@@ -16,7 +16,7 @@ services:
     container_name: vivo
     hostname: vivo
     build:
-      context: ./
+      context: ./vivo-dockerbuild
       dockerfile: Dockerfile
       args:
         - VIVO_DIR=/usr/local/vivo/home
@@ -34,3 +34,8 @@ services:
 
 networks:
   vivo:
+    ipam:
+#     driver: default
+      config:
+      - subnet: 100.127.0.0/24
+# this one is for staging     - subnet: 100.127.1.0/24
