@@ -18,7 +18,6 @@ display:DefaultMenu
     a  display:MainMenu ;
     rdfs:label "Default Menu" ;
     display:hasElement display:InternationalMenuItem ;
-    display:hasElement display:IndustryMenuItem ;
     display:hasElement display:HomeMenuItem ;
     display:hasElement display:OrganizationsMenuItem ;
     #display:hasElement display:PeopleMenuItem ;
@@ -73,12 +72,6 @@ display:InternationalMenuItem
     display:linkText "International";
     display:toPage display:International .        
     
-display:IndustryMenuItem 
-    a display:NavigationElement ;
-    display:menuPosition 7;
-    display:linkText "Industry";
-    display:toPage display:Industry .        
-    
 #display:EquipmentMenuItem 
 #    a display:NavigationElement ;
 #    display:menuPosition 8;
@@ -112,14 +105,6 @@ display:International
     display:title "International" ;
     display:urlMapping "/international" ; 
     display:hasDataGetter display:internationalDataGetter .
-
-display:Industry 
-    a display:Page ;    
-    a display:ClassGroupPage;
-    display:forClassGroup vivoweb:vitroClassGroupevents ;
-    display:title "Industry Collaboration" ;
-    display:urlMapping "/forIndustry" ; 
-    display:hasDataGetter display:industryDataGetter .
 
 display:Organizations 
     a display:Page ;
