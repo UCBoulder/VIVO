@@ -16,6 +16,8 @@ services:
     container_name: vivo
     hostname: vivo
     build:
+# Work with Jake to create an image that is pre-built with VIVO and then store this on artifactory or github
+# Also, look at docker-compose help to do heatlhchecks 
       context: ./vivo-dockerbuild
       dockerfile: Dockerfile
       args:
