@@ -87,7 +87,7 @@ argon2.time = 1000
   #   Example:
   #     vitro.local.solr.url = http://localhost:8983/solr/vivocore
   #
-vitro.local.solr.url = http://solr_setup:8983/solr/vivocore
+vitro.local.solr.url = http://solr-setup:8983/solr/vivocore
 
 
 # -----------------------------------------------------------------------------
