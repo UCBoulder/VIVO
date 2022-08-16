@@ -2311,6 +2311,7 @@ obo:ERO_0000398
               "true"^^xsd:boolean .
 
 vivo:geographicFocusOf
+      rdfs:label "global connections related to teaching and scholarly work (in recent years)" ;
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
       vitro:displayRankAnnot
@@ -2320,7 +2321,7 @@ vivo:geographicFocusOf
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:inPropertyGroupAnnot
-              <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
+              <http://vitro.mannlib.cornell.edu/ns/default#intlActivitiesPropertyGroup> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:selectFromExistingAnnot
@@ -4023,7 +4024,7 @@ vivo:orcidId
       vitro:displayRankAnnot
               "10"^^xsd:int ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> ;
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> ;
       vitro:inPropertyGroupAnnot
@@ -4115,6 +4116,7 @@ geo:codeGAUL
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:geographicFocus
+      rdfs:label "global connections related to teaching and scholarly work (in recent years)" ;
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
       vitro:displayRankAnnot
@@ -4124,7 +4126,7 @@ vivo:geographicFocus
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:inPropertyGroupAnnot
-              <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
+              <http://vitro.mannlib.cornell.edu/ns/default#intlActivitiesPropertyGroup> ;
       vitro:offerCreateNewOptionAnnot
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
