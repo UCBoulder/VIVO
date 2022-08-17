@@ -12,7 +12,7 @@ services:
     ports:
       - 18983:8983
     volumes:
-      - solrhome:/opt/solr/server/solr
+      - solrhome-setup:/opt/solr/server/solr
     networks:
       - vivo-setup
 
@@ -39,7 +39,7 @@ services:
       - vivo-setup
 
 volumes:
-   solrhome:
+   solrhome-setup:
 networks:
   vivo-setup:
     ipam:

@@ -12,7 +12,7 @@ services:
     ports:
       - 28983:8983
     volumes:
-      - solrhome:/opt/solr/server/solr
+      - solrhome-staging:/opt/solr/server/solr
     networks:
       - vivo-staging
 
@@ -39,7 +39,7 @@ services:
       - vivo-staging
 
 volumes:
-   solrhome:
+  solrhome-staging:
 
 networks:
   vivo-staging:
