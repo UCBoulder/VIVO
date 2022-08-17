@@ -11,6 +11,8 @@ services:
       - VERBOSE=${VERBOSE}
     ports:
       - 28983:8983
+    volumes:
+      - solrhome:/opt/solr/server/solr
     networks:
       - vivo-staging
 
@@ -35,6 +37,9 @@ services:
       - ${LOCAL_VIVO_HOME}:/usr/local/vivo/home
     networks:
       - vivo-staging
+
+volumes:
+   solrhome:
 
 networks:
   vivo-staging:

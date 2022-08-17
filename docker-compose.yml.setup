@@ -11,6 +11,8 @@ services:
       - VERBOSE=${VERBOSE}
     ports:
       - 18983:8983
+    volumes:
+      - solrhome:/opt/solr/server/solr
     networks:
       - vivo-setup
 
@@ -36,6 +38,8 @@ services:
     networks:
       - vivo-setup
 
+volumes:
+   solrhome:
 networks:
   vivo-setup:
     ipam:
