@@ -7231,4 +7231,16 @@ vivo:assignedBy
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 
-
+obo:IAO_0000013
+      rdfs:label "Journal Article"@en-US ;
+      vitro:displayLimitAnnot
+              "-1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "-1"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:hiddenFromPublishBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGrouppublications> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
