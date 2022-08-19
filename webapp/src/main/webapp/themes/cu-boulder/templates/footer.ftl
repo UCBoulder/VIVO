@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <#if user.hasRevisionInfoAccess>
              | Version <a href="${version.moreInfoUrl}" title="version">${version.label}</a>
         </#if>
-	        <br/> Data updated last 11/7/2013 4:00 AM
+	        <br/> Data updated last 8/18/2022 4:00 AM
 	        <br/> University of Colorado Boulder / CU Boulder
                 <br/> Fundamental data on national and international awards provided by Academic Analytics.
     </p>
