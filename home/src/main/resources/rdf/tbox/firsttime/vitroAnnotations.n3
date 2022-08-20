@@ -7232,7 +7232,6 @@ vivo:assignedBy
 
 
 obo:IAO_0000013
-      rdfs:label "Journal Article"@en-US ;
       vitro:displayLimitAnnot
               "-1"^^xsd:int ;
       vitro:displayRankAnnot
