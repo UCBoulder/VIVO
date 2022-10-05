@@ -71,4 +71,12 @@ if [ -f /usr/local/vivo/home/config/example.applicationSetup.n3 ]; then
   fi
 fi
 
+# Note - need to do this port startup - copy footer.ftl file for template with last updated date stamp to target
+if [ -f /usr/local/vivo/home/themes/cu-boulder/templates/footer.ftl ]; then
+  if [  -d /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates ]; then
+    echo "Copying vivo/home/themes/cu-boulder/templates/footer.ftl to /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates/footer.ftl"
+    cp /usr/local/vivo/home/themes/cu-boulder/templates/footer.ftl /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates/footer.ftl
+  fi
+fi
+
 catalina.sh run
