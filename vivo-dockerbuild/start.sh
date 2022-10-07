@@ -73,10 +73,13 @@ fi
 
 # Note - need to do this port startup - copy footer.ftl file for template with last updated date stamp to target
 if [ -f /usr/local/vivo/home/themes/cu-boulder/templates/footer.ftl ]; then
-  if [  -d /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates ]; then
-    echo "Copying vivo/home/themes/cu-boulder/templates/footer.ftl to /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates/footer.ftl"
-    cp /usr/local/vivo/home/themes/cu-boulder/templates/footer.ftl /usr/local/tomcat/webapps/ROOT/themes/cu-boulder/templates/footer.ftl
-  fi
+  echo "Updating VIVO war /usr/local/tomcat/webapps/ROOT.war with footer.ftl that has last update date"
+  cd /usr/local/vivo/home/
+  jar -uvf /usr/local/tomcat/webapps/ROOT.war themes/cu-boulder/templates/footer.ftl 
+else
+  echo "footer.ftl doesn't exist in vivo-home. Extracting to vivo-home/themes/cu-boulder/templates for future ETL which shows date updated"
+  cd /usr/local/vivo/home/
+  jar -xvf /usr/local/tomcat/webapps/ROOT.war themes/cu-boulder/templates/footer.ftl 
 fi
 
 catalina.sh run
