@@ -87,6 +87,11 @@ drwxrwsr-x. 7 elsborg fis-developers 96 Aug 12 14:52 vivo-cub-setup
 so to start vivo vivo-cub-staging do:
 sudo systemctl start vivo-cub-staging
 
+Note - you might see messages that look like this below. Please ignore them because you might remove working images for other containers.
+WARNING
+: Found orphan containers (vivo-staging, solr-staging, vivo-setup, solr-setup) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+
+
 The rest of the CU Boulder specific commands to view logs and debug will be in Confluence.
 To do generic VIVO debugging please see the VIVO confluence:
 https://wiki.lyrasis.org/display/VIVODOC112x/
