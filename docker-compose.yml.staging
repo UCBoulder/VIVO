@@ -9,6 +9,7 @@ services:
     environment:
       - RESET_CORE=${RESET_CORE}
       - VERBOSE=${VERBOSE}
+      - SOLR_LOG_LEVEL=WARN
     ports:
       - 28983:8983
     volumes:
