@@ -3,9 +3,13 @@ version: '3.2'
 services:
 
   solr-staging:
-    image: vivoweb/vivo-solr:latest
     container_name: solr-staging
     hostname: solr
+    build:
+      context: ./vivo-solr
+      dockerfile: Dockerfile
+    security_opt:
+      - seccomp:unconfined
     environment:
       - RESET_CORE=${RESET_CORE}
       - VERBOSE=${VERBOSE}
