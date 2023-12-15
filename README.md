@@ -2,15 +2,19 @@
 
 ## VIVO instance directory structure
 ```
-|-- VIVO project instance top level - eg vivo-cub-staging-dev
-|  |-- Vitro-languanges
-|  |-- VIVO-languages
-|  |-- Vitro
-|  |-- VIVO
-|  |-- vivo-solr
-|  |-- vivo-dockerbuild
-|  |-- vivo-home
+|-- VIVO-project-instance\    ( top level - eg vivo-cub-staging-dev )
+|  |-- Vitro-languanges\
+|  |-- VIVO-languages\
+|  |-- Vitro\
+|  |-- VIVO\
+|  |-- vivo-solr\
+|  |-- vivo-dockerbuild\
+|  |-- vivo-home\
+|  |-- docker-compose.yml
+|  |--.env
 ```
+The steps below outline what to do to get the components setup into this directory structure
+
 ## Build process
 ### below is a copy  of the original VIVO README section with just VIVO maven build steps
 Before building VIVO, you will also need to clone (and switch to the same branch, if other than main) of [Vitro](https://github.com/vivo-project/Vitro). The Vitro project must be cloned to a sibling directory next to VIVO so that it can be found during the build. You will also need to clone (and switch to the appropriate branch) of [Vitro-languages](https://github.com/vivo-project/Vitro-languages) and [VIVO-languages](https://github.com/vivo-project/VIVO-languages).
