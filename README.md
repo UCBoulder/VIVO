@@ -1,16 +1,16 @@
 # CU Experts - experts.colorado.edu - CU Customizations for vivo-project/VIVO are listed up here
 
 ## VIVO instance directory structure
-
-- VIVO instance top level - eg vivo-cub-staging-dev
---Vitro-languanges
---VIVO-languages
---Vitro
---VIVO
---vivo-solr
---vivo-dockerbuild
---vivo-home
-
+```
+|-- VIVO project instance top level - eg vivo-cub-staging-dev
+|  |-- Vitro-languanges
+|  |-- VIVO-languages
+|  |-- Vitro
+|  |-- VIVO
+|  |-- vivo-solr
+|  |-- vivo-dockerbuild
+|  |-- vivo-home
+```
 ## Build process
 ### below is a copy  of the original VIVO README section with just VIVO maven build steps
 Before building VIVO, you will also need to clone (and switch to the same branch, if other than main) of [Vitro](https://github.com/vivo-project/Vitro). The Vitro project must be cloned to a sibling directory next to VIVO so that it can be found during the build. You will also need to clone (and switch to the appropriate branch) of [Vitro-languages](https://github.com/vivo-project/Vitro-languages) and [VIVO-languages](https://github.com/vivo-project/VIVO-languages).
@@ -31,6 +31,12 @@ mvn clean package -s installer/example-settings.xml
 ```
 
 ## Docker setup
+### vivo-solr repo checkout
+In the top level vivo-project instance directory do a git clone from the vivo-project vivo-solr repo
+eg:  git clone git@github.com:vivo-project/vivo-solr.git
+Next checkout the solr-8.11 branch
+eg: git checkout solr-8.11
+
 ### docker-compose setup
 There is a docker-compose.yml file for each vivo instance with the name of the instance appended to the end of the file.
 So we have a:
@@ -38,8 +44,8 @@ So we have a:
 2. docker-compose.yml.staging ( staging )
 3. docker-compose.yml.setup ( setup )
 
-create a link to the appropropriate docker.compose.yml file for your environment
-example for staging: ln -s docker-dompose.yml.staging docker-compose.yml
+copy the appropriate docker-compose.yml file from the VIVO directory up to the top level project directory and call it docker-compose.yml
+example for staging: cp docker-dompose.yml.staging ../docker-compose.yml
 
 ### Docker environment and docker context setup
 This is different then the original VIVO environment. It limits the Dockerfile context to just the necessary components needed to build the tomcat docker image.
@@ -47,20 +53,24 @@ This is set here: https://github.com/UCBoulder/VIVO/blob/CUB-1.12.3/docker-compo
 This is why our CU fork has a subdirectory called - ./vivo-dockerbuild
 The CU repo has copied the vivo-project start.sh and Dockerfile from the parent directory into this context directory.
 
-Following a maven build it is necessary to copy the results of the build into this vivo-dockerbuild directory.
+First copy the VIVO/vivo-dockerbuild directory up to the vivo project instance directory.
+Next, following a maven build it is necessary to copy the results of the build into this vivo-dockerbuild directory.
 ```
-cp -rp installer/* vivo-dockerbuild/installer/
-```
+cp -rp installer/* ../vivo-dockerbuild/installer/
+```N
 Note that the results of a build are NOT checked into github - this should still be setup in .gitignore to make sure it doesn't automatically happen
-
-#### in the top level VIVO directory as the vivo user create a vivo-home directory
-For example:
 ```
+#### in the top level VIVO project instance directory as the vivo user create a vivo-home directory
+For example:
+
 [elsborg@prometheus02 VIVO]$ pwd
 /data/vivo/vivo-cub-setup/VIVO
 [elsborg@prometheus02 VIVO]$ ls -lad vivo-home
 drwxrwsr-x. 9 vivo fis-developers 113 Aug 19 23:39 vivo-home
-```
+
+
+### Copy the VIVO/.env file up to the vivo project instance directory
+in VIVO directory - cp -rp .env ..
 
 At this point we're ready to start docker
 
