@@ -3,9 +3,13 @@ version: '3.2'
 services:
 
   solr-setup:
-    image: vivoweb/vivo-solr:latest
     container_name: solr-setup
-    hostname: solr-setup
+    hostname: solr
+    build:
+      context: ./vivo-solr
+      dockerfile: Dockerfile
+    security_opt:
+      - seccomp:unconfined
     environment:
       - RESET_CORE=${RESET_CORE}
       - VERBOSE=${VERBOSE}
@@ -40,7 +44,8 @@ services:
       - vivo-setup
 
 volumes:
-   solrhome-setup:
+  solrhome-setup:
+
 networks:
   vivo-setup:
     ipam:
