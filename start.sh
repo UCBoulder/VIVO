@@ -2,6 +2,20 @@
 
 set -e
 
+# Show mounts
+echo "showing mounts"
+df -h
+
+# Show user ID
+echo "running whoami then id"
+whoami
+id
+
+echo "show perms on /usr/local/vivo"
+ls -altr /usr/local/vivo
+echo "show perms on /usr/local/vivo/home"
+ls -altr /usr/local/vivo
+
 # allow easier debugging with `docker run -e VERBOSE=yes`
 if [[ "$VERBOSE" = "yes" ]]; then
   set -x
@@ -56,5 +70,19 @@ if [ -f /usr/local/vivo/home/config/example.applicationSetup.n3 ]; then
     echo "Using existing /usr/local/vivo/home/config/applicationSetup.n3"
   fi
 fi
+
+# Note - need to do this port startup - copy footer.ftl file for template with last updated date stamp to target
+if [ -f /usr/local/vivo/home/themes/cu-boulder/templates/footer.ftl ]; then
+  echo "Updating VIVO war /usr/local/tomcat/webapps/ROOT.war with footer.ftl that has last update date"
+  cd /usr/local/vivo/home/
+  jar -uvf /usr/local/tomcat/webapps/ROOT.war themes/cu-boulder/templates/footer.ftl 
+else
+  echo "footer.ftl doesn't exist in vivo-home. Extracting to vivo-home/themes/cu-boulder/templates for future ETL which shows date updated"
+  cd /usr/local/vivo/home/
+  jar -xvf /usr/local/tomcat/webapps/ROOT.war themes/cu-boulder/templates/footer.ftl 
+fi
+
+echo "Sleeping 30 seconds to wait for SOLR to start and setup the VIVOCORE"
+sleep 30
 
 catalina.sh run

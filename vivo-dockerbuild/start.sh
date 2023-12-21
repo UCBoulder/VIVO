@@ -82,4 +82,7 @@ else
   jar -xvf /usr/local/tomcat/webapps/ROOT.war themes/cu-boulder/templates/footer.ftl 
 fi
 
+echo "Sleeping 30 seconds to wait for SOLR to start and setup the VIVOCORE"
+sleep 30
+
 catalina.sh run

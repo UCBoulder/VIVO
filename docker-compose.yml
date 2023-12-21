@@ -1,0 +1,57 @@
+version: '3.2'
+
+services:
+
+  solr:
+    container_name: ${COMPOSE_PROJECT_NAME}-solr
+    hostname: solr
+    build:
+      context: ./vivo-solr
+      dockerfile: Dockerfile
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - RESET_CORE=${RESET_CORE}
+      - VERBOSE=${VERBOSE}
+      - SOLR_LOG_LEVEL=WARN
+    ports:
+      - ${SOLR_PORT}:8983
+    volumes:
+      - solrhome:/opt/solr/server/solr
+    networks:
+      - vivo
+
+  tomcat:
+    container_name: ${COMPOSE_PROJECT_NAME}-vivo
+    hostname: vivo
+    build:
+# Work with Jake to create an image that is pre-built with VIVO and then store this on artifactory or github
+# Also, look at docker-compose help to do heatlhchecks 
+      context: ./VIVO/vivo-dockerbuild
+      dockerfile: Dockerfile
+      args:
+        - VIVO_DIR=/usr/local/vivo/home
+        - TDB_FILE_MODE=direct
+        - SOLR_URL=http://solr:8983/solr/vivocore
+    environment:
+      - RESET_HOME=${RESET_HOME}
+      - VERBOSE=${VERBOSE}
+    ports:
+      - ${EXTERNAL_VIVO_PORT}:8080
+    volumes:
+      - ${LOCAL_VIVO_HOME}:/usr/local/vivo/home
+    networks:
+      - vivo
+    depends_on:
+      - solr
+
+volumes:
+  solrhome:
+
+networks:
+  vivo:
+    ipam:
+#     driver: default
+      config:
+      - subnet: ${SUBNET}
+# this one is for staging     - subnet: 100.127.1.0/24
