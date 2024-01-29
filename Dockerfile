@@ -1,6 +1,5 @@
 FROM tomcat:9-jdk11-openjdk
 
-#ARG SOLR_URL=http://localhost:8983/solr/vivocore
 ARG SOLR_URL
 ARG VIVO_DIR=/usr/local/vivo/home
 ARG TDB_FILE_MODE=direct
