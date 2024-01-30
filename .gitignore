@@ -22,7 +22,6 @@ utilities/rdbmigration/.work
 **/bin/
 
 vivo-home/
-vivo-dockerbuild/installer
 
 .fake
 .ionide
