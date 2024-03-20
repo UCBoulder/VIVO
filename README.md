@@ -37,9 +37,13 @@ mvn clean package -s installer/example-settings.xml
 ## Docker setup
 ### vivo-solr repo checkout
 In the top level vivo-project instance directory do a git clone from the vivo-project vivo-solr repo
-eg:  git clone git@github.com:vivo-project/vivo-solr.git
+```
+git clone git@github.com:vivo-project/vivo-solr.git
+```
 Next checkout the solr-8.11 branch
-eg: git checkout solr-8.11
+```
+git checkout solr-8.11
+```
 
 ### docker-compose setup
 There is a .env file which is used by docker-compose for each vivo instance with the name of the instance appended to the end of the file.
@@ -64,24 +68,24 @@ Following a maven build it is necessary to copy the results of the build into th
 cp -rp installer/* vivo-dockerbuild/installer/
 ```
 Note that the results of a build are NOT checked into github - this should still be setup in .gitignore to make sure it doesn't automatically happen
-```
 #### in the VIVO directory as the vivo user create a vivo-home directory
 For example:
 
+```
 [elsborg@prometheus02 VIVO]$ pwd
 /data/vivo/vivo-cub-setup/VIVO
 [elsborg@prometheus02 VIVO]$ ls -lad vivo-home
 drwxrwsr-x. 9 vivo fis-developers 113 Aug 19 23:39 vivo-home
 
-
-### Prior to Starting docker
-
-#### If your latest maven build isn't an initial build and you changed rdf files
 ```
-# Force a start to re-read the rdf files if there a new code change
+
+## Prior to Starting docker
+
+### If your latest maven build isn't an initial build and you changed rdf files. Force a re-read the rdf files if there a new code change at start time
+```
 sudo rm -rf vivo-home/rdf
 ```
-#### If you want to move around loaded database files
+### If you want to move around loaded database files
 The VIVO software stores it's data in a TDB database - google "Apache Jena TDB"
 This is located at:
 ```
@@ -94,7 +98,31 @@ We, at CU, have created backup copies of this database to baseline and empty dat
 This is the time to move them around if needed. 
 Specifics will be in the CU FIS Confluence
 
-### Starting docker
+### If you have changed anything in the configuration - .env files, ports, etc
+You will have to remove the config directory in vivo-home in order to have the config files be rebuilt with values from the docker-compose .env files
+eg:
+```
+(python3) elsborg@prometheus-dev1:/data/vivo/vivo-cub-setup-dev/VIVO/vivo-home$ ls -latr
+total 24
+drwxr-sr-x.  2 vivoweb fis-developers   50 Oct  5  2022 bin
+drwxr-sr-x. 10 vivoweb fis-developers  137 Oct  5  2022 rdf
+drwxr-s---.  3 vivoweb fis-developers   73 Oct  5  2022 uploads
+drwxr-s---.  2 vivoweb fis-developers 4096 Oct  5  2022 tdbModels
+drwxr-s---.  3 vivoweb fis-developers   27 Oct  5  2022 upgrade
+drwxr-sr-x.  3 vivoweb fis-developers   24 Oct  7  2022 themes
+drwxrwsr-x.  2 vivo    fis-developers 4096 Oct  7  2022 tdbContentModels.toload
+-rw-r--r--.  1 vivoweb fis-developers    0 Mar  6  2023 junk
+-rw-rw-r--.  1 elsborg fis-developers 2082 Mar  6  2023 googleAnalytics.ftl
+drwxr-sr-x.  2 vivoweb fis-developers  164 Dec 19 15:55 config
+drwxr-s---.  2 vivo    fis-developers 4096 Mar 18 20:46 tdbContentModels.backup
+drwxrwsr-x. 12 vivoweb fis-developers  228 Mar 19 20:45 .
+drwxr-s---.  2 vivoweb fis-developers 4096 Mar 19 20:46 tdbContentModels
+drwxrwsr-x. 12 elsborg fis-developers 4096 Mar 20 10:10 ..
+(python3) elsborg@prometheus-dev1:/data/vivo/vivo-cub-setup-dev/VIVO/vivo-home$ rm -rf config
+```
+When the docker container starts again, it will do a check to see if the config directory exists. If it doesn't it will copy in the various config templates and replace values from the .env files where applicable. Details of this can be seen in the start.sh file
+
+## Starting docker
 Each of the experts instances has it's own setup of systemV start scripts.
 The name is the same as the instance directory:
 ```
