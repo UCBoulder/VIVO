@@ -18,6 +18,7 @@ services:
       - ${SOLR_PORT}:8983
     volumes:
       - solrhome:/opt/solr/server/solr
+      - solrdata:/var/solr/data
     networks:
       - vivo
 
@@ -47,6 +48,7 @@ services:
 
 volumes:
   solrhome:
+  solrdata:
 
 networks:
   vivo:
